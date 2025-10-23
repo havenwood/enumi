@@ -116,16 +116,6 @@ module Kernel
               def to_i = value
               alias to_int to_i
 
-              def to_i8 = value.to_i
-              def to_i16 = value.to_i
-              def to_i32 = value.to_i
-              def to_i64 = value.to_i
-
-              def to_u8 = value.to_i
-              def to_u16 = value.to_i
-              def to_u32 = value.to_i
-              def to_u64 = value.to_i
-
               def <=>(other) = other.respond_to?(:value) ? value <=> other.value : nil
               include Comparable
 
@@ -345,16 +335,6 @@ module Kernel
 
               def to_i = value
               alias to_int to_i
-
-              def to_i8 = value.to_i
-              def to_i16 = value.to_i
-              def to_i32 = value.to_i
-              def to_i64 = value.to_i
-
-              def to_u8 = value.to_i
-              def to_u16 = value.to_i
-              def to_u32 = value.to_i
-              def to_u64 = value.to_i
 
               def <=>(other) = other.respond_to?(:value) ? value <=> other.value : nil
               include Comparable

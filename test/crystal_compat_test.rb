@@ -212,24 +212,6 @@ class CrystalCompatTest < Minitest::Test
     assert_equal 99, result.value
   end
 
-  # Type conversion methods
-
-  def test_to_i8 = assert_equal(0, Color::Red.to_i8)
-
-  def test_to_i16 = assert_equal(1, Color::Green.to_i16)
-
-  def test_to_i32 = assert_equal(2, Color::Blue.to_i32)
-
-  def test_to_i64 = assert_equal(0, Color::Red.to_i64)
-
-  def test_to_u8 = assert_equal(1, Color::Green.to_u8)
-
-  def test_to_u16 = assert_equal(2, Color::Blue.to_u16)
-
-  def test_to_u32 = assert_equal(0, Color::Red.to_u32)
-
-  def test_to_u64 = assert_equal(1, Color::Green.to_u64)
-
   # .hash method
 
   def test_hash_different_for_different_variants
