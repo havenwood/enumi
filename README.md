@@ -47,7 +47,6 @@ Color.count         #=> 3
 Color.find(:Red)    #=> Color::Red(0)
 Color.find('Blue')  #=> Color::Blue(2)
 Color.find(1)       #=> Color::Yellow(1)
-Color.find(999)     #=> nil
 Color.each { |color| puts color }
 ```
 
@@ -115,7 +114,7 @@ Permission::All.to_s    #=> "Read, Write, Execute"
 ```ruby
 Permission::Read | Permission::Write  #=> Permission(3) (Read, Write)
 Permission::Read & Permission::Write  #=> Permission::None(0)
-Permission::Read ^ Permission::Write  #=> Permission(3) (Read, Write)
+(Permission::Read | Permission::Write) ^ Permission::Read  #=> Permission::Write(2)
 
 Permission.combine(Permission::Read, Permission::Execute)  #=> Permission(5) (Read, Execute)
 ```
@@ -197,7 +196,7 @@ end
 |--------|-------------|
 | `.values` | Array of all variants |
 | `.find(key)` | Find by string, symbol, or integer |
-| `.from_value(int)` | Find by integer value |
+| `.from_value(int)` | Find by integer value (raises if not found) |
 | `.each { }` | Iterate variants |
 | `.count` | Number of variants |
 | `.value?(int)` | Check if value exists |
