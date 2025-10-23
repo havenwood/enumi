@@ -1,0 +1,78 @@
+module Enumi
+  VERSION: String
+end
+
+module Kernel
+  def Enumi: (Symbol const, ?flags: bool) { () -> void } -> _EnumClass
+  def enum: (Symbol const, ?flags: bool) { () -> void } -> _EnumClass
+end
+
+interface _EnumClass
+  def flags?: () -> bool
+  def values: () -> Array[_EnumVariant]
+  def names: () -> Array[String]
+  def from_value?: (Integer | Symbol value) -> (_EnumVariant | nil)
+  def from_value: (Integer | Symbol value) -> _EnumVariant
+  def new: (Integer | Symbol value) -> _EnumVariant
+  def valid?: (untyped enum_value) -> bool
+  def each: () { (_EnumVariant, Integer) -> void } -> void
+        | () -> Enumerator[_EnumVariant, void]
+  def map: [U] () { (_EnumVariant) -> U } -> Array[U]
+        | () -> Enumerator[_EnumVariant, Array[untyped]]
+  def count: () -> Integer
+  def value?: (Integer int) -> bool
+  def ===: (untyped other) -> bool
+  def inspect: () -> String
+  def combine: (*_EnumVariant variants) -> Integer
+  def parse_flags: (Integer value) -> Array[String]
+  def includes?: (Integer value, _EnumVariant | Integer flag) -> bool
+  def find: (String | Symbol | Integer key) -> (_EnumVariant | nil)
+  def parse?: (String string) -> (_EnumVariant | nil)
+  def parse: (String string) -> _EnumVariant
+  def []: (*untyped members) -> (_EnumVariant | Integer | nil)
+  alias flags []
+  def name: () -> String?
+end
+
+interface _EnumVariant
+  def value: () -> Integer
+  def to_s: () -> String
+  def to_i: () -> Integer
+  def to_int: () -> Integer
+  def to_i8: () -> Integer
+  def to_i16: () -> Integer
+  def to_i32: () -> Integer
+  def to_i64: () -> Integer
+  def to_u8: () -> Integer
+  def to_u16: () -> Integer
+  def to_u32: () -> Integer
+  def to_u64: () -> Integer
+  def <=>: (_EnumVariant other) -> Integer?
+  def <: (_EnumVariant other) -> bool
+  def <=: (_EnumVariant other) -> bool
+  def >: (_EnumVariant other) -> bool
+  def >=: (_EnumVariant other) -> bool
+  def ==: (untyped other) -> bool
+  def between?: (_EnumVariant min, _EnumVariant max) -> bool
+  def clamp: (_EnumVariant min, _EnumVariant max) -> _EnumVariant
+  def +: (Integer other) -> _EnumVariant
+  def -: (Integer other) -> _EnumVariant
+  def ~: () -> _EnumVariant
+  def hash: () -> Integer
+  def clone: () -> self
+  def inspect: () -> String
+  def name: () -> String?
+  def includes?: (_EnumVariant | Integer flag) -> bool
+  def each: () { (_EnumVariant, Integer) -> void } -> void
+  def to_h: () -> { name: String, value: Integer }
+  def deconstruct_keys: (Array[Symbol]? keys) -> { name: String, value: Integer }
+  def ===: (untyped other) -> bool
+end
+
+interface _FlagVariant
+  include _EnumVariant
+
+  def |: (_FlagVariant other) -> (_FlagVariant | nil)
+  def &: (_FlagVariant other) -> (_FlagVariant | nil)
+  def ^: (_FlagVariant other) -> (_FlagVariant | nil)
+end

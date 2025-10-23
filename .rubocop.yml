@@ -1,0 +1,34 @@
+AllCops:
+  TargetRubyVersion: 3.4
+  NewCops: enable
+
+plugins:
+  - rubocop-minitest
+  - rubocop-rake
+
+Layout/SpaceInsideHashLiteralBraces:
+  EnforcedStyle: no_space
+
+Naming/MethodName:
+  Enabled: false
+
+Style/HashEachMethods:
+  Enabled: false
+
+Style/MixinUsage:
+  Enabled: false
+
+Style/ReturnNilInPredicateMethodDefinition:
+  Enabled: false
+
+Lint/BinaryOperatorWithIdenticalOperands:
+  Exclude:
+    - "examples/**/*"
+    - "test/**/*"
+
+Minitest/MultipleAssertions:
+  Max: 5
+
+# Disable metrics since the code is intentionally dense.
+Metrics:
+  Enabled: false
